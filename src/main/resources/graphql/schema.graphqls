@@ -1,0 +1,31 @@
+schema{
+    mutation:Mutation
+    query:Query
+}
+
+type Mutation{
+    createTicket(ticket:TicketInput):Ticket
+    updateTicket(id:ID,ticket:TicketInput):Ticket
+    deleteTicket(id:ID):Boolean
+}
+
+type Query{
+    getTickets:[Ticket]
+    getTicketsPagination(page:Int, size:Int):[Ticket]
+    getTicket(id:Int):Ticket
+}
+
+# Input types
+input TicketInput{
+    user:String
+    status:String
+}
+
+# Output types
+type Ticket{
+    id:ID
+    user:String
+    status:String
+    createdAt:String
+    updatedAt:String
+}
