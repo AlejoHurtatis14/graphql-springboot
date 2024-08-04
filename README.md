@@ -1,9 +1,18 @@
 # Getting Started
 
-* Create database in MYSQL with name `ticket-app`
+### Clean project
 * Run in project `.\mvnw clean install`
-* After Run in project `.\mvnw spring-boot:run`
-* Open to navigator with url `http://localhost:9095/graphiql`
+
+### Init services
+* Init docker service db in container `docker-compose up -d db`
+* Init docker service app in container `docker-compose up -d app`
+
+### Stop services
+* Stop docker service app in container `docker-compose down -v app` 
+* Stop docker service db in container `docker-compose down -v db`
+
+### Open project in navigator
+* Url `http://localhost:9095/graphiql`
 
 ### Guides run api
 

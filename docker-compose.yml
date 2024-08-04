@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_DATABASE: ticket-app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - spring-boot-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-boot-container
+    ports:
+      - "9095:9095"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/ticket-app
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+    depends_on:
+      - db
+    networks:
+      - spring-boot-network
+
+networks:
+  spring-boot-network:
+
+volumes:
+  mysql-data:
